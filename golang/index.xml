@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Golangs on Go Jzy</title>
-    <link>https://mazeltovvv.github.io/golang/</link>
-    <description>Recent content in Golangs on Go Jzy</description>
+    <title>Golang on GO Jzy</title>
+    <link>https://YoungJzy.github.io/golang/</link>
+    <description>Recent content in Golang on GO Jzy</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-EN</language>
-    <managingEditor>3160231309@qq.com (yourname)</managingEditor>
-    <webMaster>3160231309@qq.com (yourname)</webMaster>
+    <language>en-us</language>
     <copyright>(c) 2019 Jzy.</copyright>
-    <lastBuildDate>Fri, 22 Mar 2019 15:11:41 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 22 Mar 2019 15:52:42 +0800</lastBuildDate>
     
-	<atom:link href="https://mazeltovvv.github.io/golang/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://YoungJzy.github.io/golang/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>GOroutine</title>
-      <link>https://mazeltovvv.github.io/golang/goroutine/</link>
-      <pubDate>Fri, 22 Mar 2019 15:11:41 +0800</pubDate>
-      <author>3160231309@qq.com (yourname)</author>
-      <guid>https://mazeltovvv.github.io/golang/goroutine/</guid>
+      <title>Goroutine</title>
+      <link>https://YoungJzy.github.io/golang/goroutine/</link>
+      <pubDate>Fri, 22 Mar 2019 15:52:26 +0800</pubDate>
+      
+      <guid>https://YoungJzy.github.io/golang/goroutine/</guid>
       <description></description>
     </item>
     

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Dockers on Go Jzy</title>
+    <title>GO Jzy</title>
     <link>https://mazeltovvv.github.io/docker/</link>
-    <description>Recent content in Dockers on Go Jzy</description>
+    <description>Recent content on GO Jzy</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-EN</language>
-    <managingEditor>3160231309@qq.com (yourname)</managingEditor>
-    <webMaster>3160231309@qq.com (yourname)</webMaster>
+    <language>en-us</language>
     <copyright>(c) 2019 Jzy.</copyright>
     <lastBuildDate>Fri, 22 Mar 2019 15:11:04 +0800</lastBuildDate>
     
@@ -18,7 +16,7 @@
       <title>Started</title>
       <link>https://mazeltovvv.github.io/docker/started/</link>
       <pubDate>Fri, 22 Mar 2019 15:11:04 +0800</pubDate>
-      <author>3160231309@qq.com (yourname)</author>
+      
       <guid>https://mazeltovvv.github.io/docker/started/</guid>
       <description></description>
     </item>

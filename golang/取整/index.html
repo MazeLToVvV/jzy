@@ -9,7 +9,7 @@
 
     <link rel="icon" href="https://YoungJzy.github.io/images/favicon.png" type="image/png">
 
-    <title>Goroutine :: GO Jzy</title>
+    <title>取整 :: GO Jzy</title>
 
     
     <link href="https://YoungJzy.github.io/css/nucleus.css?1553675680" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/golang/goroutine/">
+  <body class="" data-url="/golang/%E5%8F%96%E6%95%B4/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -121,7 +121,7 @@
  
   
     
-      <li data-nav-id="/golang/%E5%8F%96%E6%95%B4/" title="取整" class="dd-item ">
+      <li data-nav-id="/golang/%E5%8F%96%E6%95%B4/" title="取整" class="dd-item active">
         <a href="https://YoungJzy.github.io/golang/%E5%8F%96%E6%95%B4/">
         取整
         <i class="fas fa-check read-icon"></i>
@@ -140,7 +140,7 @@
  
   
     
-      <li data-nav-id="/golang/goroutine/" title="Goroutine" class="dd-item active">
+      <li data-nav-id="/golang/goroutine/" title="Goroutine" class="dd-item ">
         <a href="https://YoungJzy.github.io/golang/goroutine/">
         Goroutine
         <i class="fas fa-check read-icon"></i>
@@ -220,14 +220,23 @@
                   <span class="links">
                  
                  
-                   Goroutine 
+                   取整 
                  
                   </span>
                 </div>
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents">
+<ul>
+<li><a href="#golang中的向上取整-向下取整-以及四舍五入">golang中的向上取整，向下取整，以及四舍五入</a>
+<ul>
+<li><a href="#概述">概述</a></li>
+<li><a href="#用法">用法</a></li>
+<li><a href="#四舍五入">四舍五入</a></li>
+</ul></li>
+</ul>
+</nav>
     </div>
 </div>
 
@@ -239,12 +248,63 @@
         
         <div id="body-inner">
           
-            <h1>Goroutine</h1>
+            <h1>取整</h1>
           
 
         
 
 
+
+
+<h1 id="golang中的向上取整-向下取整-以及四舍五入">golang中的向上取整，向下取整，以及四舍五入</h1>
+
+<h2 id="概述">概述</h2>
+
+<ul>
+<li>官方的<code>math</code>包只给了向上和向下取整，分别是<code>math.Ceil()</code>[向上取整]，<code>math.Floor()</code>[向下取整]，并没有四舍五入的直接方法，但是我们可以通过向下取整变相的实现四舍五入。</li>
+</ul>
+
+<h2 id="用法">用法</h2>
+
+<pre><code class="language-golang">package main
+ 
+import (
+	&quot;fmt&quot;
+	&quot;math&quot;
+)
+
+func main(){
+    x := 1.1
+    
+	fmt.Println(math.Ceil(x))  // 输出为2
+	fmt.Println(math.Floor(x))  // 输出为1
+}
+</code></pre>
+
+<h2 id="四舍五入">四舍五入</h2>
+
+<ul>
+<li>Word&rsquo;s cheap, show u my code
+```golang
+package main</li>
+</ul>
+
+<p>import (
+	&ldquo;fmt&rdquo;
+	&ldquo;math&rdquo;
+)</p>
+
+<p>func main(){
+    x := 1.1
+    y := 1.6</p>
+
+<pre><code>fmt.Println(math.Floor(x + 0.5)) // 输出为1
+fmt.Println(math.Floor(y + 0.5)) // 输出为2    
+</code></pre>
+
+<p>}
+```
+<strong>简单的很让人舒服，很巧妙的方法。</strong></p>
 
 
 <footer class=" footline" >
@@ -297,8 +357,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -316,6 +374,8 @@
             
                 
                     
+                        
+                        
                     
                 
                 

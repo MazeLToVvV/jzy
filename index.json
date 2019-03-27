@@ -1,5 +1,12 @@
 [
 {
+	"uri": "https://YoungJzy.github.io/golang/%E5%8F%96%E6%95%B4/",
+	"title": "取整",
+	"tags": [],
+	"description": "",
+	"content": " golang中的向上取整，向下取整，以及四舍五入 概述  官方的math包只给了向上和向下取整，分别是math.Ceil()[向上取整]，math.Floor()[向下取整]，并没有四舍五入的直接方法，但是我们可以通过向下取整变相的实现四舍五入。  用法 package main import ( \u0026quot;fmt\u0026quot; \u0026quot;math\u0026quot; ) func main(){ x := 1.1 fmt.Println(math.Ceil(x)) // 输出为2 fmt.Println(math.Floor(x)) // 输出为1 }  四舍五入  Word\u0026rsquo;s cheap, show u my code ```golang package main  import ( \u0026ldquo;fmt\u0026rdquo; \u0026ldquo;math\u0026rdquo; )\nfunc main(){ x := 1.1 y := 1.6\nfmt.Println(math.Floor(x + 0.5)) // 输出为1 fmt.Println(math.Floor(y + 0.5)) // 输出为2  } ``` 简单的很让人舒服，很巧妙的方法。\n"
+},
+{
 	"uri": "https://YoungJzy.github.io/golang/",
 	"title": "Golang",
 	"tags": [],

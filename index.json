@@ -1,5 +1,12 @@
 [
 {
+	"uri": "https://YoungJzy.github.io/",
+	"title": "",
+	"tags": [],
+	"description": "",
+	"content": " something to share  About golang  "
+},
+{
 	"uri": "https://YoungJzy.github.io/golang/%E5%8F%96%E6%95%B4/",
 	"title": "取整",
 	"tags": [],
@@ -14,8 +21,8 @@
 	"content": " Goroutine管理 取整  "
 },
 {
-	"uri": "https://YoungJzy.github.io/golang/goroutine/",
-	"title": "Goroutine",
+	"uri": "https://YoungJzy.github.io/golang/goroutine%E7%9A%84%E7%AE%A1%E7%90%86/",
+	"title": "Goroutine的管理",
 	"tags": [],
 	"description": "",
 	"content": ""
@@ -23,13 +30,6 @@
 {
 	"uri": "https://YoungJzy.github.io/categories/",
 	"title": "Categories",
-	"tags": [],
-	"description": "",
-	"content": ""
-},
-{
-	"uri": "https://YoungJzy.github.io/",
-	"title": "GO Jzy",
 	"tags": [],
 	"description": "",
 	"content": ""

@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>(c) 2019 Jzy.</copyright>
-    <lastBuildDate>Wed, 27 Mar 2019 16:26:14 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 28 Mar 2019 14:40:23 +0800</lastBuildDate>
     
 	<atom:link href="https://YoungJzy.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -23,11 +23,11 @@
     </item>
     
     <item>
-      <title>Goroutine</title>
-      <link>https://YoungJzy.github.io/golang/goroutine/</link>
+      <title>Goroutine的管理</title>
+      <link>https://YoungJzy.github.io/golang/goroutine%E7%9A%84%E7%AE%A1%E7%90%86/</link>
       <pubDate>Fri, 22 Mar 2019 15:52:26 +0800</pubDate>
       
-      <guid>https://YoungJzy.github.io/golang/goroutine/</guid>
+      <guid>https://YoungJzy.github.io/golang/goroutine%E7%9A%84%E7%AE%A1%E7%90%86/</guid>
       <description></description>
     </item>
     

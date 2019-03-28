@@ -14,20 +14,20 @@
     
     <item>
       <title>取整</title>
-      <link>https://YoungJzy.github.io/golang/%E5%8F%96%E6%95%B4/</link>
+      <link>https://YoungJzy.github.io/golang/1.-%E5%8F%96%E6%95%B4/</link>
       <pubDate>Wed, 27 Mar 2019 16:26:14 +0800</pubDate>
       
-      <guid>https://YoungJzy.github.io/golang/%E5%8F%96%E6%95%B4/</guid>
+      <guid>https://YoungJzy.github.io/golang/1.-%E5%8F%96%E6%95%B4/</guid>
       <description>golang中的向上取整，向下取整，以及四舍五入
 概述  官方的math包只给了向上和向下取整，分别是math.Ceil()[向上取整]，math.Floor()[向下取整]，并没有四舍五入的直接方法，但是我们可以通过向下取整变相的实现四舍五入。  用法 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;math&amp;quot; ) func main(){ x := 1.1 fmt.Println(math.Ceil(x)) // 输出为2 fmt.Println(math.Floor(x)) // 输出为1 }  四舍五入  Word&amp;rsquo;s cheap, show u my code  package main import ( &amp;quot;fmt&amp;quot; &amp;quot;math&amp;quot; ) func main(){ x := 1.1 y := 1.6 fmt.Println(math.Floor(x + 0.5)) // 输出为1 fmt.Println(math.Floor(y + 0.5)) // 输出为2 }  简单的很让人舒服，很巧妙的方法。</description>
     </item>
     
     <item>
       <title>Goroutine的管理</title>
-      <link>https://YoungJzy.github.io/golang/goroutine%E7%9A%84%E7%AE%A1%E7%90%86/</link>
+      <link>https://YoungJzy.github.io/golang/2.-goroutine%E7%9A%84%E7%AE%A1%E7%90%86/</link>
       <pubDate>Fri, 22 Mar 2019 15:52:26 +0800</pubDate>
       
-      <guid>https://YoungJzy.github.io/golang/goroutine%E7%9A%84%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://YoungJzy.github.io/golang/2.-goroutine%E7%9A%84%E7%AE%A1%E7%90%86/</guid>
       <description></description>
     </item>
     

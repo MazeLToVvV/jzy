@@ -1,13 +1,6 @@
 [
 {
-	"uri": "https://YoungJzy.github.io/",
-	"title": "",
-	"tags": [],
-	"description": "",
-	"content": " something to share  About golang  "
-},
-{
-	"uri": "https://YoungJzy.github.io/golang/1.-%E5%8F%96%E6%95%B4/",
+	"uri": "https://YoungJzy.github.io/golang/%E5%8F%96%E6%95%B4/",
 	"title": "取整",
 	"tags": [],
 	"description": "",
@@ -21,11 +14,32 @@
 	"content": " 取整 Goroutine管理  "
 },
 {
-	"uri": "https://YoungJzy.github.io/golang/2.-goroutine%E7%9A%84%E7%AE%A1%E7%90%86/",
+	"uri": "https://YoungJzy.github.io/golang/goroutine%E7%9A%84%E7%AE%A1%E7%90%86/",
 	"title": "Goroutine的管理",
 	"tags": [],
 	"description": "",
 	"content": ""
+},
+{
+	"uri": "https://YoungJzy.github.io/goodposts/",
+	"title": "goodposts",
+	"tags": [],
+	"description": "",
+	"content": " goroutine调度器  "
+},
+{
+	"uri": "https://YoungJzy.github.io/goodposts/goroutine%E8%B0%83%E5%BA%A6%E5%99%A8/",
+	"title": "Goroutine调度器",
+	"tags": [],
+	"description": "",
+	"content": " 关于goroutine调度器 https://tonybai.com/2017/06/23/an-intro-about-goroutine-scheduler/  "
+},
+{
+	"uri": "https://YoungJzy.github.io/",
+	"title": "",
+	"tags": [],
+	"description": "",
+	"content": " something to share  About golang Some good posts  "
 },
 {
 	"uri": "https://YoungJzy.github.io/categories/",

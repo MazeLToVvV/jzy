@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>goodposts on GO Jzy</title>
+    <link>https://YoungJzy.github.io/goodposts/</link>
+    <description>Recent content in goodposts on GO Jzy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>(c) 2019 Jzy.</copyright>
+    <lastBuildDate>Thu, 28 Mar 2019 15:01:02 +0800</lastBuildDate>
+    
+	<atom:link href="https://YoungJzy.github.io/goodposts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Goroutine调度器</title>
+      <link>https://YoungJzy.github.io/goodposts/goroutine%E8%B0%83%E5%BA%A6%E5%99%A8/</link>
+      <pubDate>Thu, 28 Mar 2019 16:11:57 +0800</pubDate>
+      
+      <guid>https://YoungJzy.github.io/goodposts/goroutine%E8%B0%83%E5%BA%A6%E5%99%A8/</guid>
+      <description> 关于goroutine调度器 https://tonybai.com/2017/06/23/an-intro-about-goroutine-scheduler/  </description>
+    </item>
+    
+  </channel>
+</rss>

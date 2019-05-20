@@ -32,7 +32,7 @@
 	"title": "Goroutine调度器",
 	"tags": [],
 	"description": "",
-	"content": " 关于goroutine调度器 https://tonybai.com/2017/06/23/an-intro-about-goroutine-scheduler/  "
+	"content": " 概述 Go采用了用户层轻量级thread或者说是类coroutine的概念来解决这些问题，Go将之称为”goroutine“。goroutine占用的资源非常小(Go 1.4将每个goroutine stack的size默认设置为2k)，goroutine调度的切换也不用陷入(trap)操作系统内核层完成，代价很低。因此，一个Go程序中可以创建成千上万个并发的goroutine。所有的Go代码都在goroutine中执行，哪怕是go的runtime也不例外。将这些goroutines按照一定算法放到“CPU”上执行的程序就称为goroutine调度器或goroutine scheduler\n 关于goroutine调度器 https://tonybai.com/2017/06/23/an-intro-about-goroutine-scheduler/  "
 },
 {
 	"uri": "https://YoungJzy.github.io/",

@@ -45,7 +45,7 @@ func main() { stopCh := make(chan bool) go func() { for { select { case &amp;lt;
       <description>在生产上碰到这样一个问题： 租户的请求是tcp的请求，而haproxy-ingress默认是转发http请求的，导致用户请求时总是报超时。
 于是我们需要进行修改，使得haproxy监听端口来转发tcp的流量。
 解决方法： 一、创建一个需要转发tcp流量应用对应的configmap配置文件：  $ vim tcp-configmap-sample.yaml  apiVersion: v1 kind: ConfigMap metadata: name: demo-ha-tcp-ingress-configmap namespace: &amp;quot;demonamespace&amp;quot; data: 3355: &amp;quot;demonamespace/demo-svc:8080&amp;quot;  当把这个configmap配置到haproxy的deployment后，haproxy的容器中就会监听这个3355端口来转发tcp的流量到demo-svc的8080端口
-二、配置haproxy，讲configmap应用起来：  $ kubectl -n demonamespace edit deployment demo-haproxy  在container的args处添加- —tcp-services-configmap参数然后将上面创建configmap所在的命名空间和configmap名填写在该参数后面
+二、配置haproxy，将configmap应用起来：  $ kubectl -n demonamespace edit deployment demo-haproxy  在container的args处添加- —tcp-services-configmap参数然后将上面创建configmap所在的命名空间和configmap名填写在该参数后面
 containers: - args: - --default-backend-service=$(POD_NAMESPACE)/demo-svc - --default-ssl-certificate=$(POD_NAMESPACE)/tls-secret - --ingress-class=ha-demo - --tcp-services-configmap=$(POD_NAMESPACE)/demo-ha-tcp-ingress-configmap  配置好configmap后，将3355端口映射出来，给外部访问： containers: - args: - --default-backend-service=$(POD_NAMESPACE)/hx-xl-iot-kpi-svc - --default-ssl-certificate=$(POD_NAMESPACE)/tls-secret - --ingress-class=ha-hx-xl-iot-kpi - --tcp-services-configmap=$(POD_NAMESPACE)/iothaproxy-tcp-ingress-configmap ······ ports: - containerPort: 80 // ---&amp;gt; 将这个80改为3355 hostPort: 30035 name: http protocol: TCP - containerPort: 443 name: https protocol: TCP - containerPort: 1936 hostPort: 19035 name: stat protocol: TCP  若需要添加一个端口映射，只需复制port映射的配置即可，这样会映射两个端口，一个监听http流量转发，一个监听tcp流量转发</description>
     </item>
     

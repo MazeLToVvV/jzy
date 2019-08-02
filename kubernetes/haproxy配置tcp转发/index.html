@@ -12,17 +12,17 @@
     <title>Haproxy配置tcp转发 :: GO Jzy</title>
 
     
-    <link href="https://YoungJzy.github.io/css/nucleus.css?1564732686" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/fontawesome-all.min.css?1564732686" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/hybrid.css?1564732686" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/featherlight.min.css?1564732686" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/perfect-scrollbar.min.css?1564732686" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/auto-complete.css?1564732686" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/theme.css?1564732686" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/hugo-theme.css?1564732686" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/nucleus.css?1564732909" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/fontawesome-all.min.css?1564732909" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/hybrid.css?1564732909" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/featherlight.min.css?1564732909" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/perfect-scrollbar.min.css?1564732909" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/auto-complete.css?1564732909" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/theme.css?1564732909" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/hugo-theme.css?1564732909" rel="stylesheet">
     
 
-    <script src="https://YoungJzy.github.io/js/jquery-2.x.min.js?1564732686"></script>
+    <script src="https://YoungJzy.github.io/js/jquery-2.x.min.js?1564732909"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -62,14 +62,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://YoungJzy.github.io/js/lunr.min.js?1564732686"></script>
-<script type="text/javascript" src="https://YoungJzy.github.io/js/auto-complete.js?1564732686"></script>
+<script type="text/javascript" src="https://YoungJzy.github.io/js/lunr.min.js?1564732909"></script>
+<script type="text/javascript" src="https://YoungJzy.github.io/js/auto-complete.js?1564732909"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/YoungJzy.github.io";
     
 </script>
-<script type="text/javascript" src="https://YoungJzy.github.io/js/search.js?1564732686"></script>
+<script type="text/javascript" src="https://YoungJzy.github.io/js/search.js?1564732909"></script>
 
     
   </div>
@@ -334,7 +334,7 @@
 <li><a href="#解决方法">解决方法：</a>
 <ul>
 <li><a href="#一-创建一个需要转发tcp流量应用对应的configmap配置文件">一、创建一个需要转发tcp流量应用对应的configmap配置文件：</a></li>
-<li><a href="#二-配置haproxy-讲configmap应用起来">二、配置haproxy，讲configmap应用起来：</a>
+<li><a href="#二-配置haproxy-将configmap应用起来">二、配置haproxy，将configmap应用起来：</a>
 <ul>
 <li><a href="#配置好configmap后-将3355端口映射出来-给外部访问">配置好configmap后，将3355端口映射出来，给外部访问：</a></li>
 </ul></li>
@@ -387,7 +387,7 @@ data:
 
 <p><strong>当把这个configmap配置到haproxy的deployment后，haproxy的容器中就会监听这个3355端口来转发tcp的流量到demo-svc的8080端口</strong></p>
 
-<h4 id="二-配置haproxy-讲configmap应用起来">二、配置haproxy，讲configmap应用起来：</h4>
+<h4 id="二-配置haproxy-将configmap应用起来">二、配置haproxy，将configmap应用起来：</h4>
 
 <ul>
 <li>$ kubectl -n demonamespace edit deployment demo-haproxy</li>
@@ -597,20 +597,20 @@ data:
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://YoungJzy.github.io/js/clipboard.min.js?1564732686"></script>
-    <script src="https://YoungJzy.github.io/js/perfect-scrollbar.min.js?1564732686"></script>
-    <script src="https://YoungJzy.github.io/js/perfect-scrollbar.jquery.min.js?1564732686"></script>
-    <script src="https://YoungJzy.github.io/js/jquery.sticky.js?1564732686"></script>
-    <script src="https://YoungJzy.github.io/js/featherlight.min.js?1564732686"></script>
-    <script src="https://YoungJzy.github.io/js/html5shiv-printshiv.min.js?1564732686"></script>
-    <script src="https://YoungJzy.github.io/js/highlight.pack.js?1564732686"></script>
+    <script src="https://YoungJzy.github.io/js/clipboard.min.js?1564732909"></script>
+    <script src="https://YoungJzy.github.io/js/perfect-scrollbar.min.js?1564732909"></script>
+    <script src="https://YoungJzy.github.io/js/perfect-scrollbar.jquery.min.js?1564732909"></script>
+    <script src="https://YoungJzy.github.io/js/jquery.sticky.js?1564732909"></script>
+    <script src="https://YoungJzy.github.io/js/featherlight.min.js?1564732909"></script>
+    <script src="https://YoungJzy.github.io/js/html5shiv-printshiv.min.js?1564732909"></script>
+    <script src="https://YoungJzy.github.io/js/highlight.pack.js?1564732909"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://YoungJzy.github.io/js/modernizr.custom.71422.js?1564732686"></script>
-    <script src="https://YoungJzy.github.io/js/learn.js?1564732686"></script>
-    <script src="https://YoungJzy.github.io/js/hugo-learn.js?1564732686"></script>
+    <script src="https://YoungJzy.github.io/js/modernizr.custom.71422.js?1564732909"></script>
+    <script src="https://YoungJzy.github.io/js/learn.js?1564732909"></script>
+    <script src="https://YoungJzy.github.io/js/hugo-learn.js?1564732909"></script>
 
-    <link href="https://YoungJzy.github.io/mermaid/mermaid.css?1564732686" type="text/css" rel="stylesheet" />
-    <script src="https://YoungJzy.github.io/mermaid/mermaid.js?1564732686"></script>
+    <link href="https://YoungJzy.github.io/mermaid/mermaid.css?1564732909" type="text/css" rel="stylesheet" />
+    <script src="https://YoungJzy.github.io/mermaid/mermaid.js?1564732909"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

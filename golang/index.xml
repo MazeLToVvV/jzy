@@ -19,7 +19,7 @@
       
       <guid>https://YoungJzy.github.io/golang/%E5%8F%96%E6%95%B4/</guid>
       <description>golang中的向上取整，向下取整，以及四舍五入
-概述  官方的math包只给了向上和向下取整，分别是math.Ceil()[向上取整]，math.Floor()[向下取整]，并没有四舍五入的直接方法，但是我们可以通过向下取整变相的实现四舍五入。  用法 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;math&amp;quot; ) func main(){ x := 1.1 fmt.Println(math.Ceil(x)) // 输出为2 fmt.Println(math.Floor(x)) // 输出为1 }  四舍五入  Word&amp;rsquo;s cheap, show u my code  package main import ( &amp;quot;fmt&amp;quot; &amp;quot;math&amp;quot; ) func main(){ x := 1.1 y := 1.6 fmt.Println(math.Floor(x + 0.5)) // 输出为1 fmt.Println(math.Floor(y + 0.5)) // 输出为2 }  简单的很让人舒服，很巧妙的方法。</description>
+概述  官方的math包只给了向上和向下取整，分别是math.Ceil()[向上取整]，math.Floor()[向下取整]，并没有四舍五入的直接方法，但是我们可以通过向下取整变相的实现四舍五入。  用法 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;math&amp;quot; ) func main(){ x := 1.1 fmt.Println(math.Ceil(x)) // 输出为2 fmt.Println(math.Floor(x)) // 输出为1 }  四舍五入  Word&amp;rsquo;s cheap, show u my code  package main import ( &amp;quot;fmt&amp;quot; &amp;quot;math&amp;quot; ) func main(){ x := 1.1 y := 1.6 fmt.Println(math.Floor(x + 0.5)) // 输出为1 fmt.Println(math.Floor(y + 0.5)) // 输出为2 }  很简单吧～</description>
     </item>
     
     <item>
@@ -28,7 +28,12 @@
       <pubDate>Fri, 22 Mar 2019 15:52:26 +0800</pubDate>
       
       <guid>https://YoungJzy.github.io/golang/goroutine%E7%9A%84%E7%AE%A1%E7%90%86/</guid>
-      <description></description>
+      <description>Goroutine的管理有两种方式： - WaitGroup - Context
+什么是WaitGroup 顾名思义，WaitGroup是等待组，即设置一个等待组，来等待goroutine的执行，只有当设置等待的goroutine的数量达到目标数之后，程序才会继续向下执行。
+func main() { var wg sync.WaitGroup wg.Add(2) go func() { defer wg.Done() time.Sleep(2*time.Second) fmt.Println(&amp;quot;1号完成&amp;quot;) }() go func() { defer wg.Done() time.Sleep(2*time.Second) fmt.Println(&amp;quot;2号完成&amp;quot;) }() wg.Wait() fmt.Println(&amp;quot;好了，大家都完成了，解散&amp;quot;) }  一个很简单的例子，一定要例子中的2个goroutine都完成任务，才算是完成，先做好的需要等待未完成的Goroutine，所有的goroutine要都全部完成才可以。就好比军训时，教官让学员报数，到达场地的学员应到28人，实到28人时，开始训练，实到人数没有达到应到人数，则一直等待。
+chan通知 WaitGroup是一种被动式（等待式）的控制并发的方法，有时候一个goroutine我们需要它一直工作，直到发起让一个goroutine停止工作的命令，这种情况下就需要主动式的控制并发的方法。
+这样我们就需要设置一个goroutine和主程序都读的到的变量，让goroutine运行是一直监听该变量，变量变为停止，则停止执行。golang中有一种通道类型（chan），可以更方便的完成上述操作，通过chan + select方法。
+func main() { stopCh := make(chan bool) go func() { for { select { case &amp;lt;-stopCh: fmt.Println(&amp;quot;打卡下班...&amp;quot;) return default: fmt.Println(&amp;quot;goroutine工作中...&amp;quot;) time.Sleep(2 * time.Second) } } }() time.Sleep(10 * time.Second) fmt.</description>
     </item>
     
   </channel>

@@ -12,17 +12,17 @@
     <title>Goroutine的管理 :: GO Jzy</title>
 
     
-    <link href="https://YoungJzy.github.io/css/nucleus.css?1564731356" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/fontawesome-all.min.css?1564731356" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/hybrid.css?1564731356" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/featherlight.min.css?1564731356" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/perfect-scrollbar.min.css?1564731356" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/auto-complete.css?1564731356" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/theme.css?1564731356" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/hugo-theme.css?1564731356" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/nucleus.css?1564732635" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/fontawesome-all.min.css?1564732635" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/hybrid.css?1564732635" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/featherlight.min.css?1564732635" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/perfect-scrollbar.min.css?1564732635" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/auto-complete.css?1564732635" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/theme.css?1564732635" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/hugo-theme.css?1564732635" rel="stylesheet">
     
 
-    <script src="https://YoungJzy.github.io/js/jquery-2.x.min.js?1564731356"></script>
+    <script src="https://YoungJzy.github.io/js/jquery-2.x.min.js?1564732635"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -62,14 +62,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://YoungJzy.github.io/js/lunr.min.js?1564731356"></script>
-<script type="text/javascript" src="https://YoungJzy.github.io/js/auto-complete.js?1564731356"></script>
+<script type="text/javascript" src="https://YoungJzy.github.io/js/lunr.min.js?1564732635"></script>
+<script type="text/javascript" src="https://YoungJzy.github.io/js/auto-complete.js?1564732635"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/YoungJzy.github.io";
     
 </script>
-<script type="text/javascript" src="https://YoungJzy.github.io/js/search.js?1564731356"></script>
+<script type="text/javascript" src="https://YoungJzy.github.io/js/search.js?1564732635"></script>
 
     
   </div>
@@ -365,21 +365,21 @@
 <p>顾名思义，WaitGroup是等待组，即设置一个等待组，来等待goroutine的执行，只有当设置等待的goroutine的数量达到目标数之后，程序才会继续向下执行。</p>
 
 <pre><code class="language-golang">func main() {
-	var wg sync.WaitGroup
+    var wg sync.WaitGroup
 
-	wg.Add(2)
-	go func() {
+    wg.Add(2)
+    go func() {
         defer wg.Done()
-		time.Sleep(2*time.Second)
-		fmt.Println(&quot;1号完成&quot;)
-	}()
-	go func() {
-		defer wg.Done()
-		time.Sleep(2*time.Second)
-		fmt.Println(&quot;2号完成&quot;)
-	}()
-	wg.Wait()
-	fmt.Println(&quot;好了，大家都完成了，解散&quot;)
+        time.Sleep(2*time.Second)
+        fmt.Println(&quot;1号完成&quot;)
+    }()
+    go func() {
+        defer wg.Done()
+        time.Sleep(2*time.Second)
+        fmt.Println(&quot;2号完成&quot;)
+    }()
+    wg.Wait()
+    fmt.Println(&quot;好了，大家都完成了，解散&quot;)
 }
 </code></pre>
 
@@ -392,67 +392,65 @@
 <p>这样我们就需要设置一个goroutine和主程序都读的到的变量，让goroutine运行是一直监听该变量，变量变为停止，则停止执行。golang中有一种通道类型（<code>chan</code>），可以更方便的完成上述操作，通过<code>chan + select</code>方法。</p>
 
 <pre><code class="language-golang">func main() {
-	stopCh := make(chan bool)
+    stopCh := make(chan bool)
 
-	go func() {
-		for {
-			select {
-			case &lt;-stopCh:
-				fmt.Println(&quot;打卡下班...&quot;)
-				return
-			default:
-				fmt.Println(&quot;goroutine工作中...&quot;)
-				time.Sleep(2 * time.Second)
-			}
-		}
-	}()
+    go func() {
+        for {
+            select {
+            case &lt;-stopCh:
+                fmt.Println(&quot;打卡下班...&quot;)
+                return
+            default:
+                fmt.Println(&quot;goroutine工作中...&quot;)
+                time.Sleep(2 * time.Second)
+            }
+        }
+    }()
 
-	time.Sleep(10 * time.Second)
-	fmt.Println(&quot;可以了，下班！&quot;)
-	stopCh&lt;- true
-	// 最后再等待10秒，查看goroutine是否真的退出了
-	time.Sleep(10 * time.Second)
-
+    time.Sleep(10 * time.Second)
+    fmt.Println(&quot;可以了，下班！&quot;)
+    stopCh&lt;- true
+    // 最后再等待10秒，查看goroutine是否真的退出了
+    time.Sleep(10 * time.Second)
 }
 </code></pre>
 
 <p>这个例子中，我们定义了一个stopCh的chan，goroutine在后台判断shopCh中国是否有值传入，如果收到值，则打卡下班，没有收到，则一直工作，这样就可以通过它来通知goroutine停止工作。这种方式是一种比较优雅的方式来控制goroutine的运行，但是也有局限。</p>
 
 <pre><code class="language-golang">func main() {
-	stopCh := make(chan bool)
+    stopCh := make(chan bool)
 
-	go func() {
-		for {
-			select {
-			case &lt;-stopCh:
+    go func() {
+        for {
+            select {
+            case &lt;-stopCh:
                 fmt.Println(&quot;goroutine1打卡下班...&quot;)
-				return
-			default:
-				fmt.Println(&quot;goroutine1工作中...&quot;)
-				time.Sleep(2 * time.Second)
-			}
-		}
+                return
+            default:
+                fmt.Println(&quot;goroutine1工作中...&quot;)
+                time.Sleep(2 * time.Second)
+            }
+        }
     }()
 
     go func() {
-		for {
-			select {
-			case &lt;-stopCh:
-				fmt.Println(&quot;goroutine2打卡下班...&quot;)
-				return
-			default:
-				fmt.Println(&quot;goroutine2工作中...&quot;)
-				time.Sleep(2 * time.Second)
-			}
-		}
-	}()
+        for {
+            select {
+            case &lt;-stopCh:
+                fmt.Println(&quot;goroutine2打卡下班...&quot;)
+                return
+            default:
+                fmt.Println(&quot;goroutine2工作中...&quot;)
+                time.Sleep(2 * time.Second)
+            }
+        }
+    }()
 
-	time.Sleep(10 * time.Second)
-	fmt.Println(&quot;可以了，下班！&quot;)
-	stopCh&lt;- true
-	// 最后再等待10秒，查看有几个goroutine退出了
-	time.Sleep(10 * time.Second)
-
+    time.Sleep(10 * time.Second)
+    fmt.Println(&quot;可以了，下班！&quot;)
+    stopCh&lt;- true
+    // 最后再等待10秒，查看有几个goroutine退出了
+    time.Sleep(10 * time.Second)
 }
 </code></pre>
 
@@ -465,29 +463,29 @@
 <p>我们看一下Context如何控制多个goroutine工作的呢</p>
 
 <pre><code class="language-golang">func main() {
-	ctx, cancel := context.WithCancel(context.Background())
-	go watch(ctx,&quot;goroutine1&quot;)
-	go watch(ctx,&quot;goroutine2&quot;)
-	go watch(ctx,&quot;goroutine3&quot;)
+    ctx, cancel := context.WithCancel(context.Background())
+    go watch(ctx,&quot;goroutine1&quot;)
+    go watch(ctx,&quot;goroutine2&quot;)
+    go watch(ctx,&quot;goroutine3&quot;)
 
-	time.Sleep(10 * time.Second)
-	fmt.Println(&quot;可以了，下班！&quot;)
-	cancel()
-	// 最后再等待10秒，查看有几个goroutine退出了
-	time.Sleep(10 * time.Second)
+    time.Sleep(10 * time.Second)
+    fmt.Println(&quot;可以了，下班！&quot;)
+    cancel()
+    // 最后再等待10秒，查看有几个goroutine退出了
+    time.Sleep(10 * time.Second)
 }
 
 func watch(ctx context.Context, name string) {
-	for {
-		select {
-		case &lt;-ctx.Done():
-			fmt.Println(name,&quot;打卡下班...&quot;)
-			return
-		default:
-			fmt.Println(name,&quot;goroutine工作中...&quot;)
-			time.Sleep(2 * time.Second)
-		}
-	}
+    for {
+        select {
+        case &lt;-ctx.Done():
+            fmt.Println(name,&quot;打卡下班...&quot;)
+            return
+        default:
+            fmt.Println(name,&quot;goroutine工作中...&quot;)
+            time.Sleep(2 * time.Second)
+        }
+    }
 }
 </code></pre>
 
@@ -665,20 +663,20 @@ func watch(ctx context.Context, name string) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://YoungJzy.github.io/js/clipboard.min.js?1564731356"></script>
-    <script src="https://YoungJzy.github.io/js/perfect-scrollbar.min.js?1564731356"></script>
-    <script src="https://YoungJzy.github.io/js/perfect-scrollbar.jquery.min.js?1564731356"></script>
-    <script src="https://YoungJzy.github.io/js/jquery.sticky.js?1564731356"></script>
-    <script src="https://YoungJzy.github.io/js/featherlight.min.js?1564731356"></script>
-    <script src="https://YoungJzy.github.io/js/html5shiv-printshiv.min.js?1564731356"></script>
-    <script src="https://YoungJzy.github.io/js/highlight.pack.js?1564731356"></script>
+    <script src="https://YoungJzy.github.io/js/clipboard.min.js?1564732635"></script>
+    <script src="https://YoungJzy.github.io/js/perfect-scrollbar.min.js?1564732635"></script>
+    <script src="https://YoungJzy.github.io/js/perfect-scrollbar.jquery.min.js?1564732635"></script>
+    <script src="https://YoungJzy.github.io/js/jquery.sticky.js?1564732635"></script>
+    <script src="https://YoungJzy.github.io/js/featherlight.min.js?1564732635"></script>
+    <script src="https://YoungJzy.github.io/js/html5shiv-printshiv.min.js?1564732635"></script>
+    <script src="https://YoungJzy.github.io/js/highlight.pack.js?1564732635"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://YoungJzy.github.io/js/modernizr.custom.71422.js?1564731356"></script>
-    <script src="https://YoungJzy.github.io/js/learn.js?1564731356"></script>
-    <script src="https://YoungJzy.github.io/js/hugo-learn.js?1564731356"></script>
+    <script src="https://YoungJzy.github.io/js/modernizr.custom.71422.js?1564732635"></script>
+    <script src="https://YoungJzy.github.io/js/learn.js?1564732635"></script>
+    <script src="https://YoungJzy.github.io/js/hugo-learn.js?1564732635"></script>
 
-    <link href="https://YoungJzy.github.io/mermaid/mermaid.css?1564731356" type="text/css" rel="stylesheet" />
-    <script src="https://YoungJzy.github.io/mermaid/mermaid.js?1564731356"></script>
+    <link href="https://YoungJzy.github.io/mermaid/mermaid.css?1564732635" type="text/css" rel="stylesheet" />
+    <script src="https://YoungJzy.github.io/mermaid/mermaid.js?1564732635"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -12,17 +12,17 @@
     <title>多平台架构镜像 :: GO Jzy</title>
 
     
-    <link href="https://YoungJzy.github.io/css/nucleus.css?1565837783" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/fontawesome-all.min.css?1565837783" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/hybrid.css?1565837783" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/featherlight.min.css?1565837783" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/perfect-scrollbar.min.css?1565837783" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/auto-complete.css?1565837783" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/theme.css?1565837783" rel="stylesheet">
-    <link href="https://YoungJzy.github.io/css/hugo-theme.css?1565837783" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/nucleus.css?1565856341" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/fontawesome-all.min.css?1565856341" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/hybrid.css?1565856341" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/featherlight.min.css?1565856341" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/perfect-scrollbar.min.css?1565856341" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/auto-complete.css?1565856341" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/theme.css?1565856341" rel="stylesheet">
+    <link href="https://YoungJzy.github.io/css/hugo-theme.css?1565856341" rel="stylesheet">
     
 
-    <script src="https://YoungJzy.github.io/js/jquery-2.x.min.js?1565837783"></script>
+    <script src="https://YoungJzy.github.io/js/jquery-2.x.min.js?1565856341"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -62,14 +62,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://YoungJzy.github.io/js/lunr.min.js?1565837783"></script>
-<script type="text/javascript" src="https://YoungJzy.github.io/js/auto-complete.js?1565837783"></script>
+<script type="text/javascript" src="https://YoungJzy.github.io/js/lunr.min.js?1565856341"></script>
+<script type="text/javascript" src="https://YoungJzy.github.io/js/auto-complete.js?1565856341"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/YoungJzy.github.io";
     
 </script>
-<script type="text/javascript" src="https://YoungJzy.github.io/js/search.js?1565837783"></script>
+<script type="text/javascript" src="https://YoungJzy.github.io/js/search.js?1565856341"></script>
 
     
   </div>
@@ -385,6 +385,13 @@
 <ul>
 <li><a href="#背景">背景</a></li>
 <li><a href="#什么是manifest">什么是manifest</a></li>
+<li><a href="#为什么要用manifest">为什么要用manifest</a></li>
+<li><a href="#如何使用">如何使用</a>
+<ul>
+<li><a href="#开启manifest">开启manifest</a></li>
+<li><a href="#创建多平台镜像">创建多平台镜像</a></li>
+</ul></li>
+<li><a href="#docker-for-desktop构建多平台镜像">docker for desktop构建多平台镜像</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -414,14 +421,89 @@
 
 <h3 id="什么是manifest">什么是manifest</h3>
 
-<p>在介绍manifest之前，先说说现状是什么：不同的平台构建的镜像，需要以不同的tag进行区分，x86平台构建的镜像，需要打上x86的标签。这并不是我们想要的结果，那么如何做到两个平台镜像，使用同一个镜像名称和标签，拉取时自动识别呢？那就要用到<strong>manifest</strong>了。</p>
+<p>简单来说，就是docker提供给镜像的一份清单，可以给一个镜像名绑定不同平台的镜像，根据architeitecture字段区分。建立了清单之后，docker在pull镜像时则会去拉适配自己当前平台架构的镜像。</p>
 
-<p>自从Docker registry v2.3和Docker 1.10开始，Docker通过支持新的image Media 类型 manifest list 实现了Multi architecture Docker镜像功能</p>
+<p>自从<code>Docker registry v2.3</code>和<code>Docker 1.10</code>开始，Docker通过支持新的image Media 类型 manifest list 实现了Multi architecture Docker镜像功能</p>
 
 <ul>
 <li>一个清单列表包含了多个不同系统不同架构的镜像：
 <img src="https://YoungJzy.github.io/images/manifest.png" alt="" /></li>
 </ul>
+
+<h3 id="为什么要用manifest">为什么要用manifest</h3>
+
+<p>不同的平台构建的镜像是不同的，x86的镜像无法在ARM服务起上跑，反之亦然，所以需要以不同的tag进行区分，x86平台构建的镜像，需要打上x86的标签。这并不是我们想要的结果，那么如何做到两个平台镜像，使用同一个镜像名称和标签，拉取时自动识别呢？那就要用到<strong>manifest</strong>了。</p>
+
+<pre><code>当有一个镜像需要在不同架构中运行时，我们需要使用不同的tag来区分比如：
+arm平台：test:arm
+x86平台:  test:amd 
+当我们在不同架构平台使用，需要根据tag来指定下载那一个镜像。
+eg: docker pull test:amd
+manifest list 解决的就是这个问题，可以直接manifest 不需要通过tag的方式下载，manifest list会自动根据客户端的平台架构，提供相应的镜像。
+</code></pre>
+
+<h3 id="如何使用">如何使用</h3>
+
+<h4 id="开启manifest">开启manifest</h4>
+
+<ul>
+<li>docker cli默认是没有开启manifest，需要配置开启。</li>
+</ul>
+
+<p><strong>Centos</strong>下直接在 <code>~/.docker/config.json</code>中添加参数，然后重启docker。</p>
+
+<pre><code class="language-json">{
+    &quot;experimental&quot;: &quot;enabled&quot;
+}
+</code></pre>
+
+<p><strong>Docker for Desktop (windows/MacOSX环境)</strong>下，勾选<code>deamon</code>&ndash;&gt;<code>Experimental features</code>
+<img src="https://YoungJzy.github.io/images/openmanifest.png" alt="" /></p>
+
+<h4 id="创建多平台镜像">创建多平台镜像</h4>
+
+<ul>
+<li>开启manifest后，通过如下命令创建、提交和查看：</li>
+</ul>
+
+<pre><code class="language-shell">// 创建多平台镜像
+docker manifest create test:v1 test:arm test:amd
+</code></pre>
+
+<pre><code class="language-shell">// 将多平台镜像推到镜像仓库
+docker manifest push test:v1
+</code></pre>
+
+<pre><code class="language-shell">// 查看多平台镜像相关信息
+docker manifest inspect test:v1
+</code></pre>
+
+<p>以官方centos镜像为例子，看一下manifest中存了哪些信息。
+<img src="https://YoungJzy.github.io/images/manifestinspect.png" alt="" />
+- 可以看到用红线标出的<code>&quot;platform&quot;</code>字段，centos:7这个镜像名对应了5个平台架构的镜像，而我们平时拉的都是<code>amd64</code>这个镜像，docker自动识别了x86的CPU架构，对应拉取了amd64的镜像，如果我们在arm上64的机器上拉去镜像，也会对应拉取<code>arm64</code>的镜像。</p>
+
+<ul>
+<li>Harbor貌似不支持manifest，docker registry v2.3以上版本是支持的！</li>
+</ul>
+
+<h3 id="docker-for-desktop构建多平台镜像">docker for desktop构建多平台镜像</h3>
+
+<p>docker for desktop中可以使用docker buildx来进行镜像的多平台构建，也就是说，可以在x86的机器上，构建多个架构的镜像，并推至镜像库。
+- 步骤如下：</p>
+
+<pre><code class="language-shell">// 创建buildx构建工具testbuild
+docker buildx ls
+docker buildx create —name testbuild
+</code></pre>
+
+<pre><code class="language-shell">// 使用buildx构建工具testbuild，准备各种平台架构环境
+docker buildx use testbuild
+docker buildx inspect —bootstrap
+</code></pre>
+
+<pre><code class="language-shell">// build 多平台构建 —push 提交mainfest。
+docker buildx build —platform linux/amd64,linux/arm64,linux/arm/v7 -t test:v1 —push .
+</code></pre>
 
 
 <footer class=" footline" >
@@ -622,20 +704,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://YoungJzy.github.io/js/clipboard.min.js?1565837783"></script>
-    <script src="https://YoungJzy.github.io/js/perfect-scrollbar.min.js?1565837783"></script>
-    <script src="https://YoungJzy.github.io/js/perfect-scrollbar.jquery.min.js?1565837783"></script>
-    <script src="https://YoungJzy.github.io/js/jquery.sticky.js?1565837783"></script>
-    <script src="https://YoungJzy.github.io/js/featherlight.min.js?1565837783"></script>
-    <script src="https://YoungJzy.github.io/js/html5shiv-printshiv.min.js?1565837783"></script>
-    <script src="https://YoungJzy.github.io/js/highlight.pack.js?1565837783"></script>
+    <script src="https://YoungJzy.github.io/js/clipboard.min.js?1565856341"></script>
+    <script src="https://YoungJzy.github.io/js/perfect-scrollbar.min.js?1565856341"></script>
+    <script src="https://YoungJzy.github.io/js/perfect-scrollbar.jquery.min.js?1565856341"></script>
+    <script src="https://YoungJzy.github.io/js/jquery.sticky.js?1565856341"></script>
+    <script src="https://YoungJzy.github.io/js/featherlight.min.js?1565856341"></script>
+    <script src="https://YoungJzy.github.io/js/html5shiv-printshiv.min.js?1565856341"></script>
+    <script src="https://YoungJzy.github.io/js/highlight.pack.js?1565856341"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://YoungJzy.github.io/js/modernizr.custom.71422.js?1565837783"></script>
-    <script src="https://YoungJzy.github.io/js/learn.js?1565837783"></script>
-    <script src="https://YoungJzy.github.io/js/hugo-learn.js?1565837783"></script>
+    <script src="https://YoungJzy.github.io/js/modernizr.custom.71422.js?1565856341"></script>
+    <script src="https://YoungJzy.github.io/js/learn.js?1565856341"></script>
+    <script src="https://YoungJzy.github.io/js/hugo-learn.js?1565856341"></script>
 
-    <link href="https://YoungJzy.github.io/mermaid/mermaid.css?1565837783" type="text/css" rel="stylesheet" />
-    <script src="https://YoungJzy.github.io/mermaid/mermaid.js?1565837783"></script>
+    <link href="https://YoungJzy.github.io/mermaid/mermaid.css?1565856341" type="text/css" rel="stylesheet" />
+    <script src="https://YoungJzy.github.io/mermaid/mermaid.js?1565856341"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -7,6 +7,13 @@
 	"content": " golang中的向上取整，向下取整，以及四舍五入\n概述  官方的math包只给了向上和向下取整，分别是math.Ceil()[向上取整]，math.Floor()[向下取整]，并没有四舍五入的直接方法，但是我们可以通过向下取整变相的实现四舍五入。  用法 package main import ( \u0026quot;fmt\u0026quot; \u0026quot;math\u0026quot; ) func main(){ x := 1.1 fmt.Println(math.Ceil(x)) // 输出为2 fmt.Println(math.Floor(x)) // 输出为1 }  四舍五入  Word\u0026rsquo;s cheap, show u my code  package main import ( \u0026quot;fmt\u0026quot; \u0026quot;math\u0026quot; ) func main(){ x := 1.1 y := 1.6 fmt.Println(math.Floor(x + 0.5)) // 输出为1 fmt.Println(math.Floor(y + 0.5)) // 输出为2 }  很简单吧～\n"
 },
 {
+	"uri": "https://YoungJzy.github.io/docker/%E5%A4%9A%E5%B9%B3%E5%8F%B0%E6%9E%B6%E6%9E%84%E9%95%9C%E5%83%8F/",
+	"title": "多平台架构镜像",
+	"tags": [],
+	"description": "",
+	"content": " 背景 国际形势严峻，x86芯片的受到限制，而采用IP授权的ARM芯片慢慢火热起来，x86服务起将不是唯一选择。两种架构CPU的指令集不通，从而对docker镜像而言，不通的芯片架构对应的镜像也是不同的。今天就来讲讲跨平台的docker镜像构建。\n什么是manifest 在介绍manifest之前，先说说现状是什么：不同的平台构建的镜像，需要以不同的tag进行区分，x86平台构建的镜像，需要打上x86的标签。这并不是我们想要的结果，那么如何做到两个平台镜像，使用同一个镜像名称和标签，拉取时自动识别呢？那就要用到manifest了。\n自从Docker registry v2.3和Docker 1.10开始，Docker通过支持新的image Media 类型 manifest list 实现了Multi architecture Docker镜像功能\n 一个清单列表包含了多个不同系统不同架构的镜像：   "
+},
+{
 	"uri": "https://YoungJzy.github.io/golang/goroutine%E7%9A%84%E7%AE%A1%E7%90%86/",
 	"title": "Goroutine的管理",
 	"tags": [],
@@ -21,6 +28,13 @@
 	"content": " 取整 Goroutine管理  "
 },
 {
+	"uri": "https://YoungJzy.github.io/docker/",
+	"title": "docker",
+	"tags": [],
+	"description": "",
+	"content": " something to share  About golang About docker About kubernetes Some good posts  "
+},
+{
 	"uri": "https://YoungJzy.github.io/kubernetes/",
 	"title": "kubernetes",
 	"tags": [],
@@ -33,20 +47,6 @@
 	"tags": [],
 	"description": "",
 	"content": " goroutine调度器  "
-},
-{
-	"uri": "https://YoungJzy.github.io/docker/",
-	"title": "docker",
-	"tags": [],
-	"description": "",
-	"content": " something to share  About golang About docker About kubernetes Some good posts  "
-},
-{
-	"uri": "https://YoungJzy.github.io/docker/%E5%A4%9A%E5%B9%B3%E5%8F%B0%E6%9E%B6%E6%9E%84%E9%95%9C%E5%83%8F/",
-	"title": "多平台架构镜像",
-	"tags": [],
-	"description": "",
-	"content": " 背景 国际形势严峻，x86芯片的受到限制，而采用IP授权的ARM芯片慢慢火热起来，x86服务起将不是唯一选择。两种架构CPU的指令集不通，从而对docker镜像而言，不通的芯片架构对应的镜像也是不同的。今天就来讲讲跨平台的docker镜像构建。\n什么是manifest 在介绍manifest之前，先说说现状是什么：不同的平台构建的镜像，需要以不同的tag进行区分，x86平台构建的镜像，需要打上x86的标签。这并不是我们想要的结果，那么如何做到两个平台镜像，使用同一个镜像名称和标签，拉取时自动识别呢？那就要用到manifest了。\n自从Docker registry v2.3和Docker 1.10开始，Docker通过支持新的image Media 类型 manifest list 实现了Multi architecture Docker镜像功能\n 一个清单列表包含了多个不同系统不同架构的镜像：   "
 },
 {
 	"uri": "https://YoungJzy.github.io/kubernetes/haproxy%E9%85%8D%E7%BD%AEtcp%E8%BD%AC%E5%8F%91/",

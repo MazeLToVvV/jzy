@@ -9,7 +9,7 @@
 
     <link rel="icon" href="https://YoungJzy.github.io/images/favicon.png" type="image/png">
 
-    <title>Goroutine调度器 :: GO Jzy</title>
+    <title>多平台架构镜像 :: GO Jzy</title>
 
     
     <link href="https://YoungJzy.github.io/css/nucleus.css?1565836468" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/goodposts/goroutine%E8%B0%83%E5%BA%A6%E5%99%A8/">
+  <body class="" data-url="/docker/%E5%A4%9A%E5%B9%B3%E5%8F%B0%E6%9E%B6%E6%9E%84%E9%95%9C%E5%83%8F/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -211,7 +211,7 @@
   
     
     <li data-nav-id="/goodposts/" title="goodposts" class="dd-item 
-        parent
+        
         
         
         ">
@@ -237,7 +237,7 @@
  
   
     
-      <li data-nav-id="/goodposts/goroutine%E8%B0%83%E5%BA%A6%E5%99%A8/" title="Goroutine调度器" class="dd-item active">
+      <li data-nav-id="/goodposts/goroutine%E8%B0%83%E5%BA%A6%E5%99%A8/" title="Goroutine调度器" class="dd-item ">
         <a href="https://YoungJzy.github.io/goodposts/goroutine%E8%B0%83%E5%BA%A6%E5%99%A8/">
         Goroutine调度器
         <i class="fas fa-check read-icon"></i>
@@ -264,7 +264,7 @@
   
     
     <li data-nav-id="/docker/" title="" class="dd-item 
-        
+        parent
         
         
         ">
@@ -290,7 +290,7 @@
  
   
     
-      <li data-nav-id="/docker/%E5%A4%9A%E5%B9%B3%E5%8F%B0%E6%9E%B6%E6%9E%84%E9%95%9C%E5%83%8F/" title="多平台架构镜像" class="dd-item ">
+      <li data-nav-id="/docker/%E5%A4%9A%E5%B9%B3%E5%8F%B0%E6%9E%B6%E6%9E%84%E9%95%9C%E5%83%8F/" title="多平台架构镜像" class="dd-item active">
         <a href="https://YoungJzy.github.io/docker/%E5%A4%9A%E5%B9%B3%E5%8F%B0%E6%9E%B6%E6%9E%84%E9%95%9C%E5%83%8F/">
         多平台架构镜像
         <i class="fas fa-check read-icon"></i>
@@ -370,7 +370,7 @@
                   <span class="links">
                  
                  
-                   Goroutine调度器 
+                   多平台架构镜像 
                  
                   </span>
                 </div>
@@ -383,7 +383,8 @@
 <ul>
 <li>
 <ul>
-<li><a href="#概述">概述</a></li>
+<li><a href="#背景">背景</a></li>
+<li><a href="#什么是manifest">什么是manifest</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -399,7 +400,7 @@
         
         <div id="body-inner">
           
-            <h1>Goroutine调度器</h1>
+            <h1>多平台架构镜像</h1>
           
 
         
@@ -407,12 +408,19 @@
 
 
 
-<h3 id="概述">概述</h3>
+<h3 id="背景">背景</h3>
 
-<p>Go采用了用户层轻量级thread或者说是类coroutine的概念来解决这些问题，Go将之称为”goroutine“。goroutine占用的资源非常小(Go 1.4将每个goroutine stack的size默认设置为2k)，goroutine调度的切换也不用陷入(trap)操作系统内核层完成，代价很低。因此，一个Go程序中可以创建成千上万个并发的goroutine。所有的Go代码都在goroutine中执行，哪怕是go的runtime也不例外。将这些goroutines按照一定算法放到“CPU”上执行的程序就称为goroutine调度器或goroutine scheduler</p>
+<p>国际形势严峻，x86芯片的受到限制，而采用IP授权的ARM芯片慢慢火热起来，x86服务起将不是唯一选择。两种架构CPU的指令集不通，从而对docker镜像而言，不通的芯片架构对应的镜像也是不同的。今天就来讲讲跨平台的docker镜像构建。</p>
+
+<h3 id="什么是manifest">什么是manifest</h3>
+
+<p>在介绍manifest之前，先说说现状是什么：不同的平台构建的镜像，需要以不同的tag进行区分，x86平台构建的镜像，需要打上x86的标签。这并不是我们想要的结果，那么如何做到两个平台镜像，使用同一个镜像名称和标签，拉取时自动识别呢？那就要用到<strong>manifest</strong>了。</p>
+
+<p>自从Docker registry v2.3和Docker 1.10开始，Docker通过支持新的image Media 类型 manifest list 实现了Multi architecture Docker镜像功能</p>
 
 <ul>
-<li>关于goroutine调度器 <a href="https://tonybai.com/2017/06/23/an-intro-about-goroutine-scheduler/">https://tonybai.com/2017/06/23/an-intro-about-goroutine-scheduler/</a></li>
+<li>一个清单列表包含了多个不同系统不同架构的镜像：
+<img src="../../images/manifest.png" alt="" /></li>
 </ul>
 
 
@@ -535,7 +543,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -548,7 +555,6 @@
             
             
                 
-                    
                     
                 
                 
@@ -569,8 +575,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -584,6 +588,7 @@
             
             
                 
+                    
                     
                 
                 
